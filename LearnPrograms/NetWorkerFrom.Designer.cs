@@ -32,12 +32,14 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.NetConnectedStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.IPToolPanel = new System.Windows.Forms.Panel();
-            this.IPAddressLabel = new System.Windows.Forms.Label();
-            this.IPAddressTextBox = new System.Windows.Forms.TextBox();
-            this.HostNameLabel = new System.Windows.Forms.Label();
-            this.HostNameTextBox = new System.Windows.Forms.TextBox();
-            this.IPLogTextBox = new System.Windows.Forms.TextBox();
             this.ClearLogBoxButton = new System.Windows.Forms.Button();
+            this.IPLogTextBox = new System.Windows.Forms.TextBox();
+            this.HostNameTextBox = new System.Windows.Forms.TextBox();
+            this.HostNameLabel = new System.Windows.Forms.Label();
+            this.IPAddressTextBox = new System.Windows.Forms.TextBox();
+            this.IPAddressLabel = new System.Windows.Forms.Label();
+            this.PingButton = new System.Windows.Forms.Button();
+            this.ResolveHostName = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.IPToolPanel.SuspendLayout();
             this.SuspendLayout();
@@ -71,6 +73,8 @@
             // IPToolPanel
             // 
             this.IPToolPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.IPToolPanel.Controls.Add(this.ResolveHostName);
+            this.IPToolPanel.Controls.Add(this.PingButton);
             this.IPToolPanel.Controls.Add(this.ClearLogBoxButton);
             this.IPToolPanel.Controls.Add(this.IPLogTextBox);
             this.IPToolPanel.Controls.Add(this.HostNameTextBox);
@@ -79,59 +83,78 @@
             this.IPToolPanel.Controls.Add(this.IPAddressLabel);
             this.IPToolPanel.Location = new System.Drawing.Point(12, 41);
             this.IPToolPanel.Name = "IPToolPanel";
-            this.IPToolPanel.Size = new System.Drawing.Size(266, 384);
+            this.IPToolPanel.Size = new System.Drawing.Size(332, 384);
             this.IPToolPanel.TabIndex = 2;
-            // 
-            // IPAddressLabel
-            // 
-            this.IPAddressLabel.AutoSize = true;
-            this.IPAddressLabel.Location = new System.Drawing.Point(14, 18);
-            this.IPAddressLabel.Name = "IPAddressLabel";
-            this.IPAddressLabel.Size = new System.Drawing.Size(61, 13);
-            this.IPAddressLabel.TabIndex = 0;
-            this.IPAddressLabel.Text = "IP Address:";
-            this.IPAddressLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // IPAddressTextBox
-            // 
-            this.IPAddressTextBox.Location = new System.Drawing.Point(81, 15);
-            this.IPAddressTextBox.Name = "IPAddressTextBox";
-            this.IPAddressTextBox.Size = new System.Drawing.Size(169, 20);
-            this.IPAddressTextBox.TabIndex = 1;
-            // 
-            // HostNameLabel
-            // 
-            this.HostNameLabel.AutoSize = true;
-            this.HostNameLabel.Location = new System.Drawing.Point(12, 45);
-            this.HostNameLabel.Name = "HostNameLabel";
-            this.HostNameLabel.Size = new System.Drawing.Size(63, 13);
-            this.HostNameLabel.TabIndex = 3;
-            this.HostNameLabel.Text = "Host Name:";
-            // 
-            // HostNameTextBox
-            // 
-            this.HostNameTextBox.Location = new System.Drawing.Point(81, 42);
-            this.HostNameTextBox.Name = "HostNameTextBox";
-            this.HostNameTextBox.Size = new System.Drawing.Size(169, 20);
-            this.HostNameTextBox.TabIndex = 3;
-            // 
-            // IPLogTextBox
-            // 
-            this.IPLogTextBox.Location = new System.Drawing.Point(4, 79);
-            this.IPLogTextBox.Multiline = true;
-            this.IPLogTextBox.Name = "IPLogTextBox";
-            this.IPLogTextBox.Size = new System.Drawing.Size(257, 271);
-            this.IPLogTextBox.TabIndex = 4;
             // 
             // ClearLogBoxButton
             // 
-            this.ClearLogBoxButton.Location = new System.Drawing.Point(186, 356);
+            this.ClearLogBoxButton.Location = new System.Drawing.Point(247, 334);
             this.ClearLogBoxButton.Name = "ClearLogBoxButton";
             this.ClearLogBoxButton.Size = new System.Drawing.Size(75, 23);
             this.ClearLogBoxButton.TabIndex = 3;
             this.ClearLogBoxButton.Text = "Clear Log";
             this.ClearLogBoxButton.UseVisualStyleBackColor = true;
             this.ClearLogBoxButton.Click += new System.EventHandler(this.ClearLogBoxButton_Click);
+            // 
+            // IPLogTextBox
+            // 
+            this.IPLogTextBox.Location = new System.Drawing.Point(4, 57);
+            this.IPLogTextBox.Multiline = true;
+            this.IPLogTextBox.Name = "IPLogTextBox";
+            this.IPLogTextBox.Size = new System.Drawing.Size(323, 271);
+            this.IPLogTextBox.TabIndex = 4;
+            // 
+            // HostNameTextBox
+            // 
+            this.HostNameTextBox.Location = new System.Drawing.Point(76, 30);
+            this.HostNameTextBox.Name = "HostNameTextBox";
+            this.HostNameTextBox.Size = new System.Drawing.Size(169, 20);
+            this.HostNameTextBox.TabIndex = 3;
+            // 
+            // HostNameLabel
+            // 
+            this.HostNameLabel.AutoSize = true;
+            this.HostNameLabel.Location = new System.Drawing.Point(7, 33);
+            this.HostNameLabel.Name = "HostNameLabel";
+            this.HostNameLabel.Size = new System.Drawing.Size(63, 13);
+            this.HostNameLabel.TabIndex = 3;
+            this.HostNameLabel.Text = "Host Name:";
+            // 
+            // IPAddressTextBox
+            // 
+            this.IPAddressTextBox.Location = new System.Drawing.Point(76, 3);
+            this.IPAddressTextBox.Name = "IPAddressTextBox";
+            this.IPAddressTextBox.Size = new System.Drawing.Size(169, 20);
+            this.IPAddressTextBox.TabIndex = 1;
+            // 
+            // IPAddressLabel
+            // 
+            this.IPAddressLabel.AutoSize = true;
+            this.IPAddressLabel.Location = new System.Drawing.Point(9, 6);
+            this.IPAddressLabel.Name = "IPAddressLabel";
+            this.IPAddressLabel.Size = new System.Drawing.Size(61, 13);
+            this.IPAddressLabel.TabIndex = 0;
+            this.IPAddressLabel.Text = "IP Address:";
+            this.IPAddressLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // PingButton
+            // 
+            this.PingButton.Location = new System.Drawing.Point(251, 3);
+            this.PingButton.Name = "PingButton";
+            this.PingButton.Size = new System.Drawing.Size(71, 23);
+            this.PingButton.TabIndex = 5;
+            this.PingButton.Text = "Ping";
+            this.PingButton.UseVisualStyleBackColor = true;
+            this.PingButton.Click += new System.EventHandler(this.PingButton_Click);
+            // 
+            // ResolveHostName
+            // 
+            this.ResolveHostName.Location = new System.Drawing.Point(251, 28);
+            this.ResolveHostName.Name = "ResolveHostName";
+            this.ResolveHostName.Size = new System.Drawing.Size(71, 23);
+            this.ResolveHostName.TabIndex = 6;
+            this.ResolveHostName.Text = "Resolve";
+            this.ResolveHostName.UseVisualStyleBackColor = true;
             // 
             // NetWorkerFrom
             // 
@@ -167,5 +190,7 @@
         private System.Windows.Forms.Label IPAddressLabel;
         private System.Windows.Forms.Button ClearLogBoxButton;
         private System.Windows.Forms.TextBox IPLogTextBox;
+        private System.Windows.Forms.Button ResolveHostName;
+        private System.Windows.Forms.Button PingButton;
     }
 }

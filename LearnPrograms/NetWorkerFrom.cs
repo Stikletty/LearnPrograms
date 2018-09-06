@@ -20,16 +20,18 @@ namespace LearnPrograms
             InitializeComponent();
         }
 
-        private void NetCheck()
+        private bool NetCheck()
         {
             if (netHandler.IsNetworkLikelyAvailable())
             {
                 NetConnectedStatusLabel.Text = "Connected";
+                return true;
             }
             else
             {
-                NetConnectedStatusLabel.Text = "Disconnected";
+                NetConnectedStatusLabel.Text = "Disconnected";                
                 MessageBox.Show("Network disconnected!", "Network error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
         }
 
@@ -48,6 +50,42 @@ namespace LearnPrograms
         private void ClearLogBoxButton_Click(object sender, EventArgs e)
         {
             IPLogTextBox.Clear();
+        }
+
+        private void PingButton_Click(object sender, EventArgs e)
+        {
+
+            IPAddressTextBox.Enabled = false;
+
+            if (this.NetCheck()) {
+                if (netHandler.ValidateIPAdress(IPAddressTextBox.Text))
+                {
+                    //Van hálózat, IP cím van a textboxban.
+                    if (netHandler.PingHost(IPAddressTextBox.Text))
+                    {
+                        IPLogTextBox.AppendText(DateTime.Now.ToLongTimeString() + " - IP address is pingable.");
+                        //TODO: Itt folytasd
+                        
+                        /*if ()
+                        {
+
+                        }*/
+                    }
+                }
+                else
+                {
+                    IPLogTextBox.AppendText(DateTime.Now.ToLongTimeString()+" - Not valid IP address.\n");
+                    IPAddressTextBox.Enabled = true;
+                    IPAddressTextBox.Focus();
+                }
+            }
+            else
+            {
+                IPAddressTextBox.Enabled = true;
+                IPLogTextBox.AppendText(DateTime.Now.ToLongTimeString() + " - Network disconnected!\n");
+            }
+
+            
         }
     }
 }

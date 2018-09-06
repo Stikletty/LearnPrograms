@@ -71,6 +71,29 @@ namespace LearnPrograms
             }
         }
 
+        private long PingRoundTime(string nameOrAddress)
+        {            
+            Ping pinger = null;
+
+            try
+            {
+                pinger = new Ping();
+                PingReply reply = pinger.Send(nameOrAddress);
+                return reply.RoundtripTime;
+            }
+            catch (PingException)
+            {
+                return 0;
+            }
+            finally
+            {
+                if (pinger != null)
+                {
+                    pinger.Dispose();
+                }
+            }
+        }
+
         public bool PingHost(string nameOrAddress)
         {
             bool pingable = false;
