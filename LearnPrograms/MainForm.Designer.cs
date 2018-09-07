@@ -30,6 +30,7 @@
         {
             this.NetworkButton = new System.Windows.Forms.Button();
             this.ExitButton = new System.Windows.Forms.Button();
+            this.SystemInfButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // NetworkButton
@@ -52,11 +53,22 @@
             this.ExitButton.UseVisualStyleBackColor = true;
             this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
+            // SystemInfButton
+            // 
+            this.SystemInfButton.Location = new System.Drawing.Point(93, 12);
+            this.SystemInfButton.Name = "SystemInfButton";
+            this.SystemInfButton.Size = new System.Drawing.Size(105, 23);
+            this.SystemInfButton.TabIndex = 2;
+            this.SystemInfButton.Text = "System Information";
+            this.SystemInfButton.UseVisualStyleBackColor = true;
+            this.SystemInfButton.Click += new System.EventHandler(this.SystemInfButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.SystemInfButton);
             this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.NetworkButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -71,6 +83,7 @@
 
         private System.Windows.Forms.Button NetworkButton;
         private System.Windows.Forms.Button ExitButton;
+        private System.Windows.Forms.Button SystemInfButton;
     }
 }
 

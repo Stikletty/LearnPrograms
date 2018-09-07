@@ -32,14 +32,15 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.NetConnectedStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.IPToolPanel = new System.Windows.Forms.Panel();
+            this.ResolveHostName = new System.Windows.Forms.Button();
+            this.PingButton = new System.Windows.Forms.Button();
             this.ClearLogBoxButton = new System.Windows.Forms.Button();
             this.IPLogTextBox = new System.Windows.Forms.TextBox();
             this.HostNameTextBox = new System.Windows.Forms.TextBox();
             this.HostNameLabel = new System.Windows.Forms.Label();
             this.IPAddressTextBox = new System.Windows.Forms.TextBox();
             this.IPAddressLabel = new System.Windows.Forms.Label();
-            this.PingButton = new System.Windows.Forms.Button();
-            this.ResolveHostName = new System.Windows.Forms.Button();
+            this.CloseButton = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.IPToolPanel.SuspendLayout();
             this.SuspendLayout();
@@ -58,7 +59,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.NetConnectedStatusLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 436);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 413);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(800, 22);
             this.statusStrip1.TabIndex = 1;
@@ -83,12 +84,32 @@
             this.IPToolPanel.Controls.Add(this.IPAddressLabel);
             this.IPToolPanel.Location = new System.Drawing.Point(12, 41);
             this.IPToolPanel.Name = "IPToolPanel";
-            this.IPToolPanel.Size = new System.Drawing.Size(332, 384);
+            this.IPToolPanel.Size = new System.Drawing.Size(349, 364);
             this.IPToolPanel.TabIndex = 2;
+            // 
+            // ResolveHostName
+            // 
+            this.ResolveHostName.Location = new System.Drawing.Point(273, 28);
+            this.ResolveHostName.Name = "ResolveHostName";
+            this.ResolveHostName.Size = new System.Drawing.Size(71, 23);
+            this.ResolveHostName.TabIndex = 6;
+            this.ResolveHostName.Text = "Resolve";
+            this.ResolveHostName.UseVisualStyleBackColor = true;
+            this.ResolveHostName.Click += new System.EventHandler(this.ResolveHostName_Click);
+            // 
+            // PingButton
+            // 
+            this.PingButton.Location = new System.Drawing.Point(273, 3);
+            this.PingButton.Name = "PingButton";
+            this.PingButton.Size = new System.Drawing.Size(71, 23);
+            this.PingButton.TabIndex = 5;
+            this.PingButton.Text = "Ping";
+            this.PingButton.UseVisualStyleBackColor = true;
+            this.PingButton.Click += new System.EventHandler(this.PingButton_Click);
             // 
             // ClearLogBoxButton
             // 
-            this.ClearLogBoxButton.Location = new System.Drawing.Point(247, 334);
+            this.ClearLogBoxButton.Location = new System.Drawing.Point(269, 334);
             this.ClearLogBoxButton.Name = "ClearLogBoxButton";
             this.ClearLogBoxButton.Size = new System.Drawing.Size(75, 23);
             this.ClearLogBoxButton.TabIndex = 3;
@@ -101,7 +122,8 @@
             this.IPLogTextBox.Location = new System.Drawing.Point(4, 57);
             this.IPLogTextBox.Multiline = true;
             this.IPLogTextBox.Name = "IPLogTextBox";
-            this.IPLogTextBox.Size = new System.Drawing.Size(323, 271);
+            this.IPLogTextBox.ReadOnly = true;
+            this.IPLogTextBox.Size = new System.Drawing.Size(340, 271);
             this.IPLogTextBox.TabIndex = 4;
             // 
             // HostNameTextBox
@@ -137,30 +159,22 @@
             this.IPAddressLabel.Text = "IP Address:";
             this.IPAddressLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // PingButton
+            // CloseButton
             // 
-            this.PingButton.Location = new System.Drawing.Point(251, 3);
-            this.PingButton.Name = "PingButton";
-            this.PingButton.Size = new System.Drawing.Size(71, 23);
-            this.PingButton.TabIndex = 5;
-            this.PingButton.Text = "Ping";
-            this.PingButton.UseVisualStyleBackColor = true;
-            this.PingButton.Click += new System.EventHandler(this.PingButton_Click);
-            // 
-            // ResolveHostName
-            // 
-            this.ResolveHostName.Location = new System.Drawing.Point(251, 28);
-            this.ResolveHostName.Name = "ResolveHostName";
-            this.ResolveHostName.Size = new System.Drawing.Size(71, 23);
-            this.ResolveHostName.TabIndex = 6;
-            this.ResolveHostName.Text = "Resolve";
-            this.ResolveHostName.UseVisualStyleBackColor = true;
+            this.CloseButton.Location = new System.Drawing.Point(713, 12);
+            this.CloseButton.Name = "CloseButton";
+            this.CloseButton.Size = new System.Drawing.Size(75, 23);
+            this.CloseButton.TabIndex = 3;
+            this.CloseButton.Text = "Close";
+            this.CloseButton.UseVisualStyleBackColor = true;
+            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // NetWorkerFrom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 458);
+            this.ClientSize = new System.Drawing.Size(800, 435);
+            this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.IPToolPanel);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.CheckNetworkButton);
@@ -192,5 +206,6 @@
         private System.Windows.Forms.TextBox IPLogTextBox;
         private System.Windows.Forms.Button ResolveHostName;
         private System.Windows.Forms.Button PingButton;
+        private System.Windows.Forms.Button CloseButton;
     }
 }

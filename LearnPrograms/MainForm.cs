@@ -21,12 +21,19 @@ namespace LearnPrograms
         {
             NetWorkerFrom networkerform = new NetWorkerFrom();
 
-            networkerform.Show();
+            networkerform.ShowDialog();
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void SystemInfButton_Click(object sender, EventArgs e)
+        {
+            SystemInformationForm systemInformationForm = new SystemInformationForm();
+
+            systemInformationForm.ShowDialog();
         }
     }
 }

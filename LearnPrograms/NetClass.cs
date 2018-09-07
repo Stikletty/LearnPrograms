@@ -61,8 +61,6 @@ namespace LearnPrograms
             if (hostEntry.AddressList.Length > 0)
             {
                 IPAddress ip = hostEntry.AddressList[0];
-                /*Socket s = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
-                s.Connect(ip, 80);*/
                 return ip.ToString();
             }
             else
@@ -71,7 +69,7 @@ namespace LearnPrograms
             }
         }
 
-        private long PingRoundTime(string nameOrAddress)
+        public long PingRoundTime(string nameOrAddress)
         {            
             Ping pinger = null;
 

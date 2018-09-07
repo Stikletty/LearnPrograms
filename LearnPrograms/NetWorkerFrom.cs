@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LearnPrograms
@@ -29,7 +22,7 @@ namespace LearnPrograms
             }
             else
             {
-                NetConnectedStatusLabel.Text = "Disconnected";                
+                NetConnectedStatusLabel.Text = "Disconnected";
                 MessageBox.Show("Network disconnected!", "Network error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
@@ -55,37 +48,88 @@ namespace LearnPrograms
         private void PingButton_Click(object sender, EventArgs e)
         {
 
+            long pingtime = 0;
+
             IPAddressTextBox.Enabled = false;
 
-            if (this.NetCheck()) {
+            if (this.NetCheck())
+            {
                 if (netHandler.ValidateIPAdress(IPAddressTextBox.Text))
                 {
                     //Van hálózat, IP cím van a textboxban.
                     if (netHandler.PingHost(IPAddressTextBox.Text))
                     {
-                        IPLogTextBox.AppendText(DateTime.Now.ToLongTimeString() + " - IP address is pingable.");
-                        //TODO: Itt folytasd
-                        
-                        /*if ()
-                        {
+                        IPLogTextBox.AppendText(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + " - IP address is pingable.\n");
 
-                        }*/
+                        //TODO: Néha problemet ad vissza, néha rendben van.
+                        for (int i = 1; i <= 3; i++)
+                        {                            
+                            pingtime = netHandler.PingRoundTime(IPAddressTextBox.Text);
+
+                            if (pingtime > 0.0)
+                            {
+                                IPLogTextBox.AppendText(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + " - " + i.ToString() + ". ping roundtime: " + pingtime.ToString() + " ms \n");
+                            }
+                            else
+                            {
+                                IPLogTextBox.AppendText(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + " - " + i.ToString() + ". ping problem.\n");
+                            }
+
+                            pingtime = 0;
+                        }
+
+                        IPAddressTextBox.Enabled = true;
                     }
                 }
                 else
                 {
-                    IPLogTextBox.AppendText(DateTime.Now.ToLongTimeString()+" - Not valid IP address.\n");
+                    IPLogTextBox.AppendText(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + " - Not valid IP address.\n");
                     IPAddressTextBox.Enabled = true;
                     IPAddressTextBox.Focus();
                 }
             }
             else
             {
+                IPLogTextBox.AppendText(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + " - Network disconnected!\n");
                 IPAddressTextBox.Enabled = true;
-                IPLogTextBox.AppendText(DateTime.Now.ToLongTimeString() + " - Network disconnected!\n");
             }
 
-            
+
+        }
+
+        private void ResolveHostName_Click(object sender, EventArgs e)
+        {
+
+            HostNameTextBox.Enabled = false;
+
+            if (this.NetCheck())
+            {
+                if (HostNameTextBox.Text.Length > 0)
+                {
+                    string ipaddress;
+
+                    ipaddress = netHandler.GetHostNameIP(HostNameTextBox.Text);
+                    IPLogTextBox.AppendText(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + " - Host ip address: " + ipaddress + "\n");
+
+                    HostNameTextBox.Enabled = true;
+                }
+                else
+                {
+                    IPLogTextBox.AppendText(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + " - Empty Host Name TextBox.\n");
+                    HostNameTextBox.Enabled = true;
+                    HostNameTextBox.Focus();
+                }
+            }
+            else
+            {
+                IPLogTextBox.AppendText(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + " - Network disconnected!\n");
+                HostNameTextBox.Enabled = true;
+            }
+        }
+
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
