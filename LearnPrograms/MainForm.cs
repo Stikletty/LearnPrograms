@@ -12,6 +12,8 @@ namespace LearnPrograms
 {
     public partial class MainForm : Form
     {
+        UserClass userhandler = new UserClass();
+
         public MainForm()
         {
             InitializeComponent();
@@ -25,7 +27,7 @@ namespace LearnPrograms
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
-        {
+        {            
             Application.Exit();
         }
 
@@ -34,6 +36,19 @@ namespace LearnPrograms
             SystemInformationForm systemInformationForm = new SystemInformationForm();
 
             systemInformationForm.ShowDialog();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            UserInfoStatusLabel.Text = "User: "+userhandler.GetUserName();
+            if (userhandler.IsUserAdministrator())
+            {
+                UserInfoStatusLabel.Text += " - Administrator";
+            }
+            else
+            {
+                UserInfoStatusLabel.Text += " - User";
+            }
         }
     }
 }

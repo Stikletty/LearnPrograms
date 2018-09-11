@@ -26,13 +26,14 @@ namespace LearnPrograms
                         StringBuilder1.AppendLine(property.Name + ":  " +
                           obj.Properties[property.Name].Value.ToString());
                     }
-                    catch
-                    {
-                        //Add codes to manage more informations
+                    catch 
+                    {                        
                     }
                 }
                 StringBuilder1.AppendLine();
             }
+
+            StringBuilder1.Replace("\n", Environment.NewLine);
             return StringBuilder1.ToString();
         }
 
@@ -62,18 +63,20 @@ namespace LearnPrograms
                           DriveInfo1.Name, DriveInfo1.VolumeLabel, DriveInfo1.DriveType,
                           DriveInfo1.DriveFormat, DriveInfo1.TotalSize, DriveInfo1.AvailableFreeSpace);
                     }
-                    catch (Exception exDriveInfo)
-                    {
-                        Console.WriteLine("StringBuild error: ", exDriveInfo.ToString());
+                    catch
+                    {                       
                     }
                 }
                 StringBuilder1.AppendFormat("SystemPageSize:  {0}\n", Environment.SystemPageSize);
                 StringBuilder1.AppendFormat("Version:  {0}", Environment.Version);
             }
-            catch (Exception exEnvironment)
+            catch
             {
-                Console.WriteLine("StringBuild error: ", exEnvironment.ToString());
+                
             }
+
+            //Textbox linebreak
+            StringBuilder1.Replace("\n", Environment.NewLine);
             return StringBuilder1.ToString();
         }
 

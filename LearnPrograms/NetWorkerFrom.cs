@@ -131,5 +131,12 @@ namespace LearnPrograms
         {
             this.Close();
         }
+
+        private void ResetPanelButton_Click(object sender, EventArgs e)
+        {
+            IPAddressTextBox.Clear();
+            HostNameTextBox.Clear();
+            IPLogTextBox.Clear();
+        }
     }
 }

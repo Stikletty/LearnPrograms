@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
-using System.Management;
 
 namespace LearnPrograms
 {
     public partial class SystemInformationForm : Form
     {
+
+        Thread DeviceInformationThread;
+
         public SystemInformationForm()
         {
             InitializeComponent();
@@ -23,6 +20,7 @@ namespace LearnPrograms
             this.Close();
         }
 
+        //TODO: WIN32CLASSES -> áttenni XML-be a listát és megszüntetni a properties classt.
         private void SystemInformationForm_Load(object sender, EventArgs e)
         {
             PropertiesClass propertiesClass = new PropertiesClass();
@@ -44,9 +42,70 @@ namespace LearnPrograms
 
             SystemInformationButton.Enabled = false;
             SystemInformationsTextBox.Clear();
-            //TODO: Szöveg tördelés nem megfelelő.
             SystemInformationsTextBox.Text = compinfo.SystemInformation();
             SystemInformationButton.Enabled = true;
+        }
+
+        private void getDeviceInformation(string win32ClassName)
+        {
+            try
+            {
+                CompInfo compinfo = new CompInfo();
+                string devinfotmp = compinfo.DeviceInformation(win32ClassName);
+
+                this.Invoke((MethodInvoker)delegate ()
+                {
+                    DeviceInformationsTextBox.Clear();
+                    if (devinfotmp.Length > 0)
+                    {
+                        DeviceInformationsTextBox.Text = devinfotmp;
+                    }
+                    else
+                    {
+                        DeviceInformationsTextBox.Text = "Class empty.";
+                    }
+                    DeviceInformationButton.Enabled = true;
+                    Win32ClassesComboBox.Enabled = true;
+                });
+            }
+            catch (ThreadAbortException abortException)
+            {
+                Console.WriteLine((string)abortException.ExceptionState);
+            }
+        }
+
+        private void DeviceInformationButton_Click(object sender, EventArgs e)
+        {
+
+            DeviceInformationButton.Enabled = false;
+            Win32ClassesComboBox.Enabled = false;
+
+            if (Win32ClassesComboBox.Text.Length > 0)
+            {
+                DeviceInformationsTextBox.Clear();
+                CompInfo compinfo = new CompInfo();
+                string Win32Class = Win32ClassesComboBox.Text;
+              
+                //getDeviceInformation(Win32Class);
+                DeviceInformationThread = new Thread(
+                    new ThreadStart(() => getDeviceInformation(Win32Class))
+                )
+                {
+                    Name = "DeviceInformation",
+                    IsBackground = true
+                };
+
+                DeviceInformationThread.Start();
+                DeviceInformationsTextBox.Text = "Getting informations. Please Wait...";
+            }
+            else
+            {
+                MessageBox.Show("Win32Class Combobox empty", "Win32Class empty", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DeviceInformationButton.Enabled = true;
+                Win32ClassesComboBox.Enabled = true;
+                Win32ClassesComboBox.Focus();
+            }
+
         }
     }
 }

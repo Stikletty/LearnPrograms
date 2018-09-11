@@ -31,6 +31,9 @@
             this.NetworkButton = new System.Windows.Forms.Button();
             this.ExitButton = new System.Windows.Forms.Button();
             this.SystemInfButton = new System.Windows.Forms.Button();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.UserInfoStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // NetworkButton
@@ -63,11 +66,28 @@
             this.SystemInfButton.UseVisualStyleBackColor = true;
             this.SystemInfButton.Click += new System.EventHandler(this.SystemInfButton_Click);
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.UserInfoStatusLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 428);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(800, 22);
+            this.statusStrip1.TabIndex = 3;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // UserInfoStatusLabel
+            // 
+            this.UserInfoStatusLabel.Name = "UserInfoStatusLabel";
+            this.UserInfoStatusLabel.Size = new System.Drawing.Size(54, 17);
+            this.UserInfoStatusLabel.Text = "UserData";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.SystemInfButton);
             this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.NetworkButton);
@@ -75,7 +95,11 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
+            this.Load += new System.EventHandler(this.MainForm_Load);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -84,6 +108,8 @@
         private System.Windows.Forms.Button NetworkButton;
         private System.Windows.Forms.Button ExitButton;
         private System.Windows.Forms.Button SystemInfButton;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel UserInfoStatusLabel;
     }
 }
 

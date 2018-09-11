@@ -41,6 +41,7 @@
             this.IPAddressTextBox = new System.Windows.Forms.TextBox();
             this.IPAddressLabel = new System.Windows.Forms.Label();
             this.CloseButton = new System.Windows.Forms.Button();
+            this.ResetPanelButton = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.IPToolPanel.SuspendLayout();
             this.SuspendLayout();
@@ -74,6 +75,7 @@
             // IPToolPanel
             // 
             this.IPToolPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.IPToolPanel.Controls.Add(this.ResetPanelButton);
             this.IPToolPanel.Controls.Add(this.ResolveHostName);
             this.IPToolPanel.Controls.Add(this.PingButton);
             this.IPToolPanel.Controls.Add(this.ClearLogBoxButton);
@@ -169,6 +171,16 @@
             this.CloseButton.UseVisualStyleBackColor = true;
             this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
+            // ResetPanelButton
+            // 
+            this.ResetPanelButton.Location = new System.Drawing.Point(188, 334);
+            this.ResetPanelButton.Name = "ResetPanelButton";
+            this.ResetPanelButton.Size = new System.Drawing.Size(75, 23);
+            this.ResetPanelButton.TabIndex = 7;
+            this.ResetPanelButton.Text = "Reset";
+            this.ResetPanelButton.UseVisualStyleBackColor = true;
+            this.ResetPanelButton.Click += new System.EventHandler(this.ResetPanelButton_Click);
+            // 
             // NetWorkerFrom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -207,5 +219,6 @@
         private System.Windows.Forms.Button ResolveHostName;
         private System.Windows.Forms.Button PingButton;
         private System.Windows.Forms.Button CloseButton;
+        private System.Windows.Forms.Button ResetPanelButton;
     }
 }

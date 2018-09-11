@@ -40,7 +40,7 @@
             // 
             // CloseButton
             // 
-            this.CloseButton.Location = new System.Drawing.Point(665, 10);
+            this.CloseButton.Location = new System.Drawing.Point(665, 12);
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.Size = new System.Drawing.Size(75, 23);
             this.CloseButton.TabIndex = 0;
@@ -50,12 +50,13 @@
             // 
             // DeviceInformationButton
             // 
-            this.DeviceInformationButton.Location = new System.Drawing.Point(549, 11);
+            this.DeviceInformationButton.Location = new System.Drawing.Point(549, 12);
             this.DeviceInformationButton.Name = "DeviceInformationButton";
             this.DeviceInformationButton.Size = new System.Drawing.Size(110, 23);
             this.DeviceInformationButton.TabIndex = 1;
             this.DeviceInformationButton.Text = "Device Informations";
             this.DeviceInformationButton.UseVisualStyleBackColor = true;
+            this.DeviceInformationButton.Click += new System.EventHandler(this.DeviceInformationButton_Click);
             // 
             // SystemInformationButton
             // 
@@ -69,7 +70,7 @@
             // 
             // DeviceInformationsTextBox
             // 
-            this.DeviceInformationsTextBox.Location = new System.Drawing.Point(390, 60);
+            this.DeviceInformationsTextBox.Location = new System.Drawing.Point(385, 60);
             this.DeviceInformationsTextBox.Multiline = true;
             this.DeviceInformationsTextBox.Name = "DeviceInformationsTextBox";
             this.DeviceInformationsTextBox.ReadOnly = true;
@@ -90,7 +91,7 @@
             // DeviceInformationsLabel
             // 
             this.DeviceInformationsLabel.AutoSize = true;
-            this.DeviceInformationsLabel.Location = new System.Drawing.Point(387, 44);
+            this.DeviceInformationsLabel.Location = new System.Drawing.Point(382, 44);
             this.DeviceInformationsLabel.Name = "DeviceInformationsLabel";
             this.DeviceInformationsLabel.Size = new System.Drawing.Size(104, 13);
             this.DeviceInformationsLabel.TabIndex = 5;
@@ -117,7 +118,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(758, 457);
+            this.ClientSize = new System.Drawing.Size(753, 457);
             this.Controls.Add(this.Win32ClassesComboBox);
             this.Controls.Add(this.SystemInformationsLabel);
             this.Controls.Add(this.DeviceInformationsLabel);

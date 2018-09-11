@@ -70,6 +70,7 @@
     <Compile Include="SystemInformationForm.Designer.cs">
       <DependentUpon>SystemInformationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserClass.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -100,6 +101,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Win32Classes.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
