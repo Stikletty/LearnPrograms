@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Win32Class>
+  <name>Win32_Battery</name>
+  <name>Win32_BaseBoard</name>
+</Win32Class>
