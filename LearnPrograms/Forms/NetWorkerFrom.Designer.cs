@@ -32,6 +32,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.NetConnectedStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.IPToolPanel = new System.Windows.Forms.Panel();
+            this.ResetPanelButton = new System.Windows.Forms.Button();
             this.ResolveHostName = new System.Windows.Forms.Button();
             this.PingButton = new System.Windows.Forms.Button();
             this.ClearLogBoxButton = new System.Windows.Forms.Button();
@@ -41,7 +42,6 @@
             this.IPAddressTextBox = new System.Windows.Forms.TextBox();
             this.IPAddressLabel = new System.Windows.Forms.Label();
             this.CloseButton = new System.Windows.Forms.Button();
-            this.ResetPanelButton = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.IPToolPanel.SuspendLayout();
             this.SuspendLayout();
@@ -89,6 +89,16 @@
             this.IPToolPanel.Size = new System.Drawing.Size(349, 364);
             this.IPToolPanel.TabIndex = 2;
             // 
+            // ResetPanelButton
+            // 
+            this.ResetPanelButton.Location = new System.Drawing.Point(188, 334);
+            this.ResetPanelButton.Name = "ResetPanelButton";
+            this.ResetPanelButton.Size = new System.Drawing.Size(75, 23);
+            this.ResetPanelButton.TabIndex = 7;
+            this.ResetPanelButton.Text = "Reset";
+            this.ResetPanelButton.UseVisualStyleBackColor = true;
+            this.ResetPanelButton.Click += new System.EventHandler(this.ResetPanelButton_Click);
+            // 
             // ResolveHostName
             // 
             this.ResolveHostName.Location = new System.Drawing.Point(273, 28);
@@ -134,6 +144,7 @@
             this.HostNameTextBox.Name = "HostNameTextBox";
             this.HostNameTextBox.Size = new System.Drawing.Size(169, 20);
             this.HostNameTextBox.TabIndex = 3;
+            this.HostNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HostNameTextBox_KeyDown);
             // 
             // HostNameLabel
             // 
@@ -150,6 +161,7 @@
             this.IPAddressTextBox.Name = "IPAddressTextBox";
             this.IPAddressTextBox.Size = new System.Drawing.Size(169, 20);
             this.IPAddressTextBox.TabIndex = 1;
+            this.IPAddressTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.IPAddressTextBox_KeyDown);
             // 
             // IPAddressLabel
             // 
@@ -170,16 +182,6 @@
             this.CloseButton.Text = "Close";
             this.CloseButton.UseVisualStyleBackColor = true;
             this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
-            // 
-            // ResetPanelButton
-            // 
-            this.ResetPanelButton.Location = new System.Drawing.Point(188, 334);
-            this.ResetPanelButton.Name = "ResetPanelButton";
-            this.ResetPanelButton.Size = new System.Drawing.Size(75, 23);
-            this.ResetPanelButton.TabIndex = 7;
-            this.ResetPanelButton.Text = "Reset";
-            this.ResetPanelButton.UseVisualStyleBackColor = true;
-            this.ResetPanelButton.Click += new System.EventHandler(this.ResetPanelButton_Click);
             // 
             // NetWorkerFrom
             // 

@@ -66,13 +66,13 @@ namespace LearnPrograms
                         {                            
                             pingtime = netHandler.PingRoundTime(IPAddressTextBox.Text);
 
-                            if (pingtime > 0.0)
+                            if (pingtime >= 1.0)
                             {
                                 IPLogTextBox.AppendText(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + " - " + i.ToString() + ". ping roundtime: " + pingtime.ToString() + " ms \n");
                             }
                             else
                             {
-                                IPLogTextBox.AppendText(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + " - " + i.ToString() + ". ping problem.\n");
+                                IPLogTextBox.AppendText(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + " - " + i.ToString() + ". ping roundtime: <1ms.\n");
                             }
 
                             pingtime = 0;
@@ -137,6 +137,22 @@ namespace LearnPrograms
             IPAddressTextBox.Clear();
             HostNameTextBox.Clear();
             IPLogTextBox.Clear();
+        }
+
+        private void IPAddressTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                this.PingButton_Click(sender, e);
+            }
+        }
+
+        private void HostNameTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.ResolveHostName_Click(sender, e);
+            }
         }
     }
 }

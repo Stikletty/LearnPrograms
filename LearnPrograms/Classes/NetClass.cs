@@ -72,11 +72,19 @@ namespace LearnPrograms
         public long PingRoundTime(string nameOrAddress)
         {            
             Ping pinger = null;
+            int timeout = 1000, ttl = 127;
+            string data = "[012345678901234567890123456789]";
+            byte[] Buffer = Encoding.ASCII.GetBytes(data);
+            PingOptions pingOpts = new PingOptions
+            {
+                Ttl = ttl,
+                DontFragment = true
+            };
 
             try
             {
                 pinger = new Ping();
-                PingReply reply = pinger.Send(nameOrAddress);
+                PingReply reply = pinger.Send(nameOrAddress, timeout, Buffer, pingOpts);
                 return reply.RoundtripTime;
             }
             catch (PingException)

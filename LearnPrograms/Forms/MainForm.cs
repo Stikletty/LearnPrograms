@@ -50,5 +50,7 @@ namespace LearnPrograms
                 UserInfoStatusLabel.Text += " - User";
             }
         }
+
+        //TODO: Remote computer information form + implementation
     }
 }

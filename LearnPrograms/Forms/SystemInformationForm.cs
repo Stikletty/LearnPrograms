@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading;
 using System.Windows.Forms;
@@ -20,19 +21,26 @@ namespace LearnPrograms
             this.Close();
         }
 
-        //TODO: WIN32CLASSES -> áttenni XML-be a listát és megszüntetni a properties classt.
         private void SystemInformationForm_Load(object sender, EventArgs e)
-        {
-            PropertiesClass propertiesClass = new PropertiesClass();
+        {           
+            try {
+                XMLHandler handler = new XMLHandler();
+                List<string> stringWin32classes = new List<string>();
 
-            string[] stringWin32classes = propertiesClass.stringWin32classes;
+                stringWin32classes = handler.getXMLElement(@"XML\Win32Classes.xml", "class");
 
-            Win32ClassesComboBox.Items.Clear();
+                Win32ClassesComboBox.Items.Clear();
 
-            foreach (string stringWin32class in stringWin32classes)
+                foreach (string stringWin32class in stringWin32classes)            
+                {
+                    //comboBox in more tab
+                    Win32ClassesComboBox.Items.Add(stringWin32class);                
+                }
+            }
+            catch (Exception ex)
             {
-                //comboBox in more tab
-                Win32ClassesComboBox.Items.Add(stringWin32class);
+                MessageBox.Show("Win32Class XML read error: "+ex.ToString(), "Win32Class XML read error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
 

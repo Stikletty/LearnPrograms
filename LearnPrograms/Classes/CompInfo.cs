@@ -10,24 +10,37 @@ namespace LearnPrograms
         //Forrás: https://www.codeproject.com/Articles/362227/System-Information        
 
         public string DeviceInformation(string stringIn)
-        {
+        {            
             StringBuilder StringBuilder1 = new StringBuilder(string.Empty);
             ManagementClass ManagementClass1 = new ManagementClass(stringIn);
             //Create a ManagementObjectCollection to loop through
             ManagementObjectCollection ManagemenobjCol = ManagementClass1.GetInstances();
             //Get the properties in the class
             PropertyDataCollection properties = ManagementClass1.Properties;
+            string propertyValue = "";
+
             foreach (ManagementObject obj in ManagemenobjCol)
             {
                 foreach (PropertyData property in properties)
                 {
                     try
                     {
-                        StringBuilder1.AppendLine(property.Name + ":  " +
-                          obj.Properties[property.Name].Value.ToString());
+
+                        if(obj.Properties[property.Name].Value != null) {
+                            propertyValue = obj.Properties[property.Name].Value.ToString();
+                        }
+                        else
+                        {
+                            propertyValue = "Not Available";
+                        }
+
+                        StringBuilder1.AppendLine(property.Name + ":  " + propertyValue);
+
+                        propertyValue = "";
                     }
-                    catch 
-                    {                        
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.ToString());
                     }
                 }
                 StringBuilder1.AppendLine();
@@ -64,15 +77,14 @@ namespace LearnPrograms
                           DriveInfo1.DriveFormat, DriveInfo1.TotalSize, DriveInfo1.AvailableFreeSpace);
                     }
                     catch
-                    {                       
+                    {                      
                     }
                 }
                 StringBuilder1.AppendFormat("SystemPageSize:  {0}\n", Environment.SystemPageSize);
                 StringBuilder1.AppendFormat("Version:  {0}", Environment.Version);
             }
-            catch
-            {
-                
+            catch 
+            {               
             }
 
             //Textbox linebreak

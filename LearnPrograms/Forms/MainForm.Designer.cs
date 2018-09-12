@@ -60,9 +60,9 @@
             // 
             this.SystemInfButton.Location = new System.Drawing.Point(93, 12);
             this.SystemInfButton.Name = "SystemInfButton";
-            this.SystemInfButton.Size = new System.Drawing.Size(105, 23);
+            this.SystemInfButton.Size = new System.Drawing.Size(135, 23);
             this.SystemInfButton.TabIndex = 2;
-            this.SystemInfButton.Text = "System Information";
+            this.SystemInfButton.Text = "Local System Information";
             this.SystemInfButton.UseVisualStyleBackColor = true;
             this.SystemInfButton.Click += new System.EventHandler(this.SystemInfButton_Click);
             // 
