@@ -3,6 +3,8 @@ using System.Management;
 using System.Text;
 using System.Windows.Forms;
 
+//TODO 10: Compinfo.cs Documentation
+
 namespace LearnPrograms
 {
     class CompInfo

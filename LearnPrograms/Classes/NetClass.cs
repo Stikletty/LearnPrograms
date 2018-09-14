@@ -6,14 +6,21 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Net.Sockets;
 using System.Net.NetworkInformation;
+using System.IO;
 
 namespace LearnPrograms
 {
     class NetClass
-    {
-        public bool ValidateIPAdress(string pIpAdress)
+    {       
+        /// <summary>
+        /// Validate IP Adress
+        /// </summary>
+        /// <returns>True if IP is valid, false is isn't.</returns>
+        /// <remarks>Checks that an IP address is valid.</remarks>
+        /// <param name="pIpAddress">Ip Address</param>
+        public bool ValidateIPAdress(string pIpAddress)
         {
-            if (IPAddress.TryParse(pIpAdress, out IPAddress ipAddress))
+            if (IPAddress.TryParse(pIpAddress, out IPAddress ipAddress))
             {
                 return true;
             }
@@ -23,11 +30,24 @@ namespace LearnPrograms
             }
         }
 
+
+        /// <summary>
+        /// Checks network availability.
+        /// </summary>
+        /// <returns>Is network likely available: true or false</returns>
+        /// <remarks> Gives back true if network is available, false when it isn't.
+        /// </remarks>        
         public bool IsNetworkLikelyAvailable()
         {
             return System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces().Any(x => x.OperationalStatus == System.Net.NetworkInformation.OperationalStatus.Up);
         }
 
+        /// <summary>
+        /// Gets the host name of an IP address
+        /// </summary>
+        /// <returns>Host name of an IP address</returns>
+        /// <param name="ipAddress">Host IP address</param>
+        /// <exception cref="SocketException">Thrown when unknown host or, not every IP has a name.</exception>
         public string GetHostName(string ipAddress)
         {
             try
@@ -36,6 +56,10 @@ namespace LearnPrograms
                 if (entry != null)
                 {
                     return entry.HostName;
+                }
+                else
+                {
+                    return "Can't get host name.";
                 }
             }
             catch (SocketException ex)
@@ -49,6 +73,50 @@ namespace LearnPrograms
             return null;
         }
 
+        /// <summary>
+        /// Gets local IP adsresses
+        /// </summary>
+        /// <returns>List of local IP addresses</returns>
+        public List<string> GetLocalIPAddress()
+        {
+            List<string> ipaddresses = new List<string>();
+
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    ipaddresses.Add(ip.ToString());
+                }
+            }
+            return ipaddresses;            
+        }
+
+        /// <summary>
+        /// Gets public internet ip address
+        /// </summary>
+        /// <remarks>It uses http://checkip.dyndns.org/ to get IP address.</remarks>
+        /// <returns>Public IP address</returns>
+        public string getPublicIP()
+        {
+            string direction;
+            WebRequest request = WebRequest.Create("http://checkip.dyndns.org/");
+            WebResponse response = request.GetResponse();
+            StreamReader stream = new StreamReader(response.GetResponseStream());
+            direction = stream.ReadToEnd();
+            stream.Close();
+            response.Close(); //Search for the ip in the html
+            int first = direction.IndexOf("Address: ") + 9;
+            int last = direction.LastIndexOf("");
+            direction = direction.Substring(first, last - first);
+            return direction;
+        }
+
+        /// <summary>
+        /// Gets IP address of a Host name
+        /// </summary>
+        /// <returns>IP address of hostname</returns>
+        /// <param name="host">Host Name</param>
         public string GetHostNameIP(string host)
         {
             IPHostEntry hostEntry;
@@ -69,6 +137,12 @@ namespace LearnPrograms
             }
         }
 
+
+        /// <summary>
+        /// Gets Ping round time
+        /// </summary>
+        /// <returns>Returns the ping round time.</returns>
+        /// <param name="nameOrAddress">Host Name or IP address</param>
         public long PingRoundTime(string nameOrAddress)
         {            
             Ping pinger = null;
@@ -100,6 +174,12 @@ namespace LearnPrograms
             }
         }
 
+
+        /// <summary>
+        /// Returns that an IP or Hostname is pingable.
+        /// </summary>
+        /// <returns>Returns that an IP or Hostname is pingable: True or false</returns>
+        /// <param name="nameOrAddress">Host Name or IP address</param>
         public bool PingHost(string nameOrAddress)
         {
             bool pingable = false;

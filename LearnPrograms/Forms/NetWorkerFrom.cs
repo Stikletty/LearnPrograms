@@ -60,19 +60,22 @@ namespace LearnPrograms
                     if (netHandler.PingHost(IPAddressTextBox.Text))
                     {
                         IPLogTextBox.AppendText(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + " - IP address is pingable.\n");
+                        IPLogTextBox.AppendText(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + " - IP address Host Name is: " + 
+                            netHandler.GetHostName(IPAddressTextBox.Text) + "\n");
 
-                        //TODO: Néha problemet ad vissza, néha rendben van.
                         for (int i = 1; i <= 3; i++)
                         {                            
                             pingtime = netHandler.PingRoundTime(IPAddressTextBox.Text);
 
                             if (pingtime >= 1.0)
                             {
-                                IPLogTextBox.AppendText(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + " - " + i.ToString() + ". ping roundtime: " + pingtime.ToString() + " ms \n");
+                                IPLogTextBox.AppendText(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + " - " 
+                                    + i.ToString() + ". ping roundtime: " + pingtime.ToString() + " ms \n");
                             }
                             else
                             {
-                                IPLogTextBox.AppendText(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + " - " + i.ToString() + ". ping roundtime: <1ms.\n");
+                                IPLogTextBox.AppendText(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + " - " 
+                                    + i.ToString() + ". ping roundtime: <1ms.\n");
                             }
 
                             pingtime = 0;
@@ -93,8 +96,6 @@ namespace LearnPrograms
                 IPLogTextBox.AppendText(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + " - Network disconnected!\n");
                 IPAddressTextBox.Enabled = true;
             }
-
-
         }
 
         private void ResolveHostName_Click(object sender, EventArgs e)
@@ -154,5 +155,7 @@ namespace LearnPrograms
                 this.ResolveHostName_Click(sender, e);
             }
         }
+
+        //TODO 01: Get local ip, and public ip implementation.
     }
 }

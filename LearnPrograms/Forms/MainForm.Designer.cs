@@ -33,6 +33,7 @@
             this.SystemInfButton = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.UserInfoStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.RemoteSystemInfButton = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -82,11 +83,22 @@
             this.UserInfoStatusLabel.Size = new System.Drawing.Size(54, 17);
             this.UserInfoStatusLabel.Text = "UserData";
             // 
+            // RemoteSystemInfButton
+            // 
+            this.RemoteSystemInfButton.Location = new System.Drawing.Point(234, 12);
+            this.RemoteSystemInfButton.Name = "RemoteSystemInfButton";
+            this.RemoteSystemInfButton.Size = new System.Drawing.Size(148, 23);
+            this.RemoteSystemInfButton.TabIndex = 4;
+            this.RemoteSystemInfButton.Text = "Remote System Information";
+            this.RemoteSystemInfButton.UseVisualStyleBackColor = true;
+            this.RemoteSystemInfButton.Click += new System.EventHandler(this.RemoteSystemInfButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.RemoteSystemInfButton);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.SystemInfButton);
             this.Controls.Add(this.ExitButton);
@@ -110,6 +122,7 @@
         private System.Windows.Forms.Button SystemInfButton;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel UserInfoStatusLabel;
+        private System.Windows.Forms.Button RemoteSystemInfButton;
     }
 }
 
