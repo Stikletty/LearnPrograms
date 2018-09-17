@@ -200,7 +200,7 @@
             // 
             // GetLocalIPButton
             // 
-            this.GetLocalIPButton.Location = new System.Drawing.Point(3, 29);
+            this.GetLocalIPButton.Location = new System.Drawing.Point(37, 28);
             this.GetLocalIPButton.Name = "GetLocalIPButton";
             this.GetLocalIPButton.Size = new System.Drawing.Size(71, 23);
             this.GetLocalIPButton.TabIndex = 9;
@@ -210,7 +210,7 @@
             // 
             // GetPublicIPButton
             // 
-            this.GetPublicIPButton.Location = new System.Drawing.Point(80, 29);
+            this.GetPublicIPButton.Location = new System.Drawing.Point(114, 28);
             this.GetPublicIPButton.Name = "GetPublicIPButton";
             this.GetPublicIPButton.Size = new System.Drawing.Size(71, 23);
             this.GetPublicIPButton.TabIndex = 10;

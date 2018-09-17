@@ -178,17 +178,26 @@ namespace LearnPrograms
 
         private void GetPublicIPButton_Click(object sender, EventArgs e)
         {
-            string publicIPCache ="";
 
-            publicIPCache = netHandler.GetPublicIP();
-
-            if (publicIPCache.Length > 0)
+            if (this.NetCheck())
             {
-                LocalPublicIPTextBox.AppendText("Public IP address: "+publicIPCache+Environment.NewLine);
+
+                string publicIPCache = "";
+
+                publicIPCache = netHandler.GetPublicIP();
+
+                if (publicIPCache.Length > 0)
+                {
+                    LocalPublicIPTextBox.AppendText("Public IP address: " + publicIPCache + Environment.NewLine);
+                }
+                else
+                {
+                    LocalPublicIPTextBox.AppendText("No Public IP." + Environment.NewLine);
+                }
             }
             else
             {
-                LocalPublicIPTextBox.AppendText("No Public IP." + Environment.NewLine);
+                LocalPublicIPTextBox.AppendText(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + " - Network disconnected!\n");
             }
 
         }
