@@ -97,7 +97,7 @@ namespace LearnPrograms
         /// </summary>
         /// <remarks>It uses http://checkip.dyndns.org/ to get IP address.</remarks>
         /// <returns>Public IP address</returns>
-        public string getPublicIP()
+        public string GetPublicIP()
         {
             string direction;
             WebRequest request = WebRequest.Create("http://checkip.dyndns.org/");
@@ -107,7 +107,7 @@ namespace LearnPrograms
             stream.Close();
             response.Close(); //Search for the ip in the html
             int first = direction.IndexOf("Address: ") + 9;
-            int last = direction.LastIndexOf("");
+            int last = direction.LastIndexOf("</body>");
             direction = direction.Substring(first, last - first);
             return direction;
         }

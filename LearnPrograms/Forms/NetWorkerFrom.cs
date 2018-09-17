@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace LearnPrograms
@@ -156,6 +157,48 @@ namespace LearnPrograms
             }
         }
 
-        //TODO 01: Get local ip, and public ip implementation.
+        private void GetLocalIPButton_Click(object sender, EventArgs e)
+        {
+            List<string> localIpList = new List<string>();
+            localIpList = netHandler.GetLocalIPAddress();
+
+            if (localIpList.Count > 0)
+            {
+                foreach (string ipaddress in localIpList)
+                {
+                    LocalPublicIPTextBox.AppendText("IP address: " + ipaddress + Environment.NewLine);
+                }
+            }
+            else
+            {
+                LocalPublicIPTextBox.AppendText("No IP address." + Environment.NewLine);
+            }
+
+        }
+
+        private void GetPublicIPButton_Click(object sender, EventArgs e)
+        {
+            string publicIPCache ="";
+
+            publicIPCache = netHandler.GetPublicIP();
+
+            if (publicIPCache.Length > 0)
+            {
+                LocalPublicIPTextBox.AppendText("Public IP address: "+publicIPCache+Environment.NewLine);
+            }
+            else
+            {
+                LocalPublicIPTextBox.AppendText("No Public IP." + Environment.NewLine);
+            }
+
+        }
+
+
+        private void ClearLocalPublicIPButton_Click(object sender, EventArgs e)
+        {
+            LocalPublicIPTextBox.Clear();
+        }
+
+
     }
 }

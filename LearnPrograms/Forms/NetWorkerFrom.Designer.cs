@@ -42,8 +42,14 @@
             this.IPAddressTextBox = new System.Windows.Forms.TextBox();
             this.IPAddressLabel = new System.Windows.Forms.Label();
             this.CloseButton = new System.Windows.Forms.Button();
+            this.LocalPublicIPTextBox = new System.Windows.Forms.TextBox();
+            this.GetLocalIPButton = new System.Windows.Forms.Button();
+            this.GetPublicIPButton = new System.Windows.Forms.Button();
+            this.GetIPPanel = new System.Windows.Forms.Panel();
+            this.ClearLocalPublicIPButton = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.IPToolPanel.SuspendLayout();
+            this.GetIPPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // CheckNetworkButton
@@ -183,11 +189,63 @@
             this.CloseButton.UseVisualStyleBackColor = true;
             this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
+            // LocalPublicIPTextBox
+            // 
+            this.LocalPublicIPTextBox.Location = new System.Drawing.Point(3, 58);
+            this.LocalPublicIPTextBox.Multiline = true;
+            this.LocalPublicIPTextBox.Name = "LocalPublicIPTextBox";
+            this.LocalPublicIPTextBox.ReadOnly = true;
+            this.LocalPublicIPTextBox.Size = new System.Drawing.Size(211, 271);
+            this.LocalPublicIPTextBox.TabIndex = 8;
+            // 
+            // GetLocalIPButton
+            // 
+            this.GetLocalIPButton.Location = new System.Drawing.Point(3, 29);
+            this.GetLocalIPButton.Name = "GetLocalIPButton";
+            this.GetLocalIPButton.Size = new System.Drawing.Size(71, 23);
+            this.GetLocalIPButton.TabIndex = 9;
+            this.GetLocalIPButton.Text = "Local IP";
+            this.GetLocalIPButton.UseVisualStyleBackColor = true;
+            this.GetLocalIPButton.Click += new System.EventHandler(this.GetLocalIPButton_Click);
+            // 
+            // GetPublicIPButton
+            // 
+            this.GetPublicIPButton.Location = new System.Drawing.Point(80, 29);
+            this.GetPublicIPButton.Name = "GetPublicIPButton";
+            this.GetPublicIPButton.Size = new System.Drawing.Size(71, 23);
+            this.GetPublicIPButton.TabIndex = 10;
+            this.GetPublicIPButton.Text = "Public IP";
+            this.GetPublicIPButton.UseVisualStyleBackColor = true;
+            this.GetPublicIPButton.Click += new System.EventHandler(this.GetPublicIPButton_Click);
+            // 
+            // GetIPPanel
+            // 
+            this.GetIPPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.GetIPPanel.Controls.Add(this.ClearLocalPublicIPButton);
+            this.GetIPPanel.Controls.Add(this.LocalPublicIPTextBox);
+            this.GetIPPanel.Controls.Add(this.GetPublicIPButton);
+            this.GetIPPanel.Controls.Add(this.GetLocalIPButton);
+            this.GetIPPanel.Location = new System.Drawing.Point(367, 41);
+            this.GetIPPanel.Name = "GetIPPanel";
+            this.GetIPPanel.Size = new System.Drawing.Size(219, 364);
+            this.GetIPPanel.TabIndex = 11;
+            // 
+            // ClearLocalPublicIPButton
+            // 
+            this.ClearLocalPublicIPButton.Location = new System.Drawing.Point(139, 334);
+            this.ClearLocalPublicIPButton.Name = "ClearLocalPublicIPButton";
+            this.ClearLocalPublicIPButton.Size = new System.Drawing.Size(75, 23);
+            this.ClearLocalPublicIPButton.TabIndex = 11;
+            this.ClearLocalPublicIPButton.Text = "Clear Log";
+            this.ClearLocalPublicIPButton.UseVisualStyleBackColor = true;
+            this.ClearLocalPublicIPButton.Click += new System.EventHandler(this.ClearLocalPublicIPButton_Click);
+            // 
             // NetWorkerFrom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 435);
+            this.Controls.Add(this.GetIPPanel);
             this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.IPToolPanel);
             this.Controls.Add(this.statusStrip1);
@@ -201,6 +259,8 @@
             this.statusStrip1.PerformLayout();
             this.IPToolPanel.ResumeLayout(false);
             this.IPToolPanel.PerformLayout();
+            this.GetIPPanel.ResumeLayout(false);
+            this.GetIPPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -222,5 +282,10 @@
         private System.Windows.Forms.Button PingButton;
         private System.Windows.Forms.Button CloseButton;
         private System.Windows.Forms.Button ResetPanelButton;
+        private System.Windows.Forms.TextBox LocalPublicIPTextBox;
+        private System.Windows.Forms.Button GetLocalIPButton;
+        private System.Windows.Forms.Button GetPublicIPButton;
+        private System.Windows.Forms.Panel GetIPPanel;
+        private System.Windows.Forms.Button ClearLocalPublicIPButton;
     }
 }
