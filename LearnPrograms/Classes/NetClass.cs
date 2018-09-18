@@ -39,6 +39,7 @@ namespace LearnPrograms
         /// </remarks>        
         public bool IsNetworkLikelyAvailable()
         {
+            //FIXME: Program futás közben kihúzott hálókábellel is azt írja, hogy van kapcsolat.
             return System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces().Any(x => x.OperationalStatus == System.Net.NetworkInformation.OperationalStatus.Up);
         }
 

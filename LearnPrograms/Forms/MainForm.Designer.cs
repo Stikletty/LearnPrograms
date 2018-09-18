@@ -34,6 +34,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.UserInfoStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.RemoteSystemInfButton = new System.Windows.Forms.Button();
+            this.ComputerNameStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,6 +71,7 @@
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ComputerNameStatusLabel,
             this.UserInfoStatusLabel});
             this.statusStrip1.Location = new System.Drawing.Point(0, 428);
             this.statusStrip1.Name = "statusStrip1";
@@ -79,6 +81,7 @@
             // 
             // UserInfoStatusLabel
             // 
+            this.UserInfoStatusLabel.BorderStyle = System.Windows.Forms.Border3DStyle.Bump;
             this.UserInfoStatusLabel.Name = "UserInfoStatusLabel";
             this.UserInfoStatusLabel.Size = new System.Drawing.Size(54, 17);
             this.UserInfoStatusLabel.Text = "UserData";
@@ -92,6 +95,13 @@
             this.RemoteSystemInfButton.Text = "Remote System Information";
             this.RemoteSystemInfButton.UseVisualStyleBackColor = true;
             this.RemoteSystemInfButton.Click += new System.EventHandler(this.RemoteSystemInfButton_Click);
+            // 
+            // ComputerNameStatusLabel
+            // 
+            this.ComputerNameStatusLabel.BorderStyle = System.Windows.Forms.Border3DStyle.Bump;
+            this.ComputerNameStatusLabel.Name = "ComputerNameStatusLabel";
+            this.ComputerNameStatusLabel.Size = new System.Drawing.Size(92, 17);
+            this.ComputerNameStatusLabel.Text = "computer name";
             // 
             // MainForm
             // 
@@ -123,6 +133,7 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel UserInfoStatusLabel;
         private System.Windows.Forms.Button RemoteSystemInfButton;
+        private System.Windows.Forms.ToolStripStatusLabel ComputerNameStatusLabel;
     }
 }
 

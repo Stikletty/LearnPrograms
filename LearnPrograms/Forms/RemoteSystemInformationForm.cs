@@ -16,13 +16,34 @@ namespace LearnPrograms
             InitializeComponent();
         }
 
+        private void CheckNetwork()
+        {
+            NetClass nethandler = new NetClass();
+
+            //Hálózat ellenőrzése
+            if (nethandler.IsNetworkLikelyAvailable())
+            {
+                SystemInformationButton.Enabled = true;
+                DeviceInformationButton.Enabled = true;
+                NetworkStatusLabel.Text = "Connected";
+            }
+            else
+            {
+                SystemInformationButton.Enabled = false;
+                DeviceInformationButton.Enabled = false;
+                NetworkStatusLabel.Text = "Disconnected";
+                MessageBox.Show("Network disconnected!", "Network error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            };
+        }
+
         private void CloseButton_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
         private void SystemInformationForm_Load(object sender, EventArgs e)
-        {           
+        {
+            //Win32Class textbox feltöltése XML-ből
             try {
                 XMLHandler handler = new XMLHandler();
                 List<string> stringWin32classes = new List<string>();
@@ -33,15 +54,18 @@ namespace LearnPrograms
 
                 foreach (string stringWin32class in stringWin32classes)            
                 {
-                    //comboBox in more tab
+                    //comboBox feltöltése
                     Win32ClassesComboBox.Items.Add(stringWin32class);                
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Win32Class XML read error: "+ex.ToString(), "Win32Class XML read error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
             }
+
+            //Hálózati kapcsolat ellenőrzése.
+            this.CheckNetwork();
+
         }
 
         private void SystemInformationButton_Click(object sender, EventArgs e)
@@ -114,6 +138,18 @@ namespace LearnPrograms
                 Win32ClassesComboBox.Focus();
             }
 
+        }
+
+        private void ClearTextBoxesButton_Click(object sender, EventArgs e)
+        {
+            RemoteIPTextBox.Clear();
+            UserNameTextBox.Clear();
+            PasswordTextBox.Clear();
+        }
+
+        private void NetworkCheckButton_Click(object sender, EventArgs e)
+        {
+            this.CheckNetwork();
         }
     }
 }

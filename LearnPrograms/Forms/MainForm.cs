@@ -49,6 +49,8 @@ namespace LearnPrograms
             {
                 UserInfoStatusLabel.Text += " - User";
             }
+
+            ComputerNameStatusLabel.Text = "Computer Name: " + Environment.MachineName;
         }
 
         private void RemoteSystemInfButton_Click(object sender, EventArgs e)
