@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net;
-using System.Net.Sockets;
-using System.Net.NetworkInformation;
 using System.IO;
+using System.Linq;
+using System.Net;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
+using System.Text;
 
 namespace LearnPrograms
 {
     class NetClass
-    {       
+    {
         /// <summary>
         /// Validate IP Adress
         /// </summary>
@@ -90,7 +89,7 @@ namespace LearnPrograms
                     ipaddresses.Add(ip.ToString());
                 }
             }
-            return ipaddresses;            
+            return ipaddresses;
         }
 
         /// <summary>
@@ -145,7 +144,7 @@ namespace LearnPrograms
         /// <returns>Returns the ping round time.</returns>
         /// <param name="nameOrAddress">Host Name or IP address</param>
         public long PingRoundTime(string nameOrAddress)
-        {            
+        {
             Ping pinger = null;
             int timeout = 1000, ttl = 127;
             string data = "[012345678901234567890123456789]";
