@@ -54,8 +54,7 @@ namespace LearnPrograms
         }
 
         private void RemoteSystemInfButton_Click(object sender, EventArgs e)
-        {
-            //TODO 02: Remote computer information form + implementation
+        {            
             RemoteSystemInformationForm remoteSystemInformationForm = new RemoteSystemInformationForm();
 
             remoteSystemInformationForm.ShowDialog();

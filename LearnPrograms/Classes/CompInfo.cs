@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Management;
 using System.Text;
-using System.Windows.Forms;
 
 //TODO 10: Compinfo.cs Documentation
 
@@ -12,7 +11,7 @@ namespace LearnPrograms
         //Forrás: https://www.codeproject.com/Articles/362227/System-Information        
 
         public string DeviceInformation(string stringIn)
-        {            
+        {
             StringBuilder StringBuilder1 = new StringBuilder(string.Empty);
             ManagementClass ManagementClass1 = new ManagementClass(stringIn);
             //Create a ManagementObjectCollection to loop through
@@ -28,7 +27,8 @@ namespace LearnPrograms
                     try
                     {
 
-                        if(obj.Properties[property.Name].Value != null) {
+                        if (obj.Properties[property.Name].Value != null)
+                        {
                             propertyValue = obj.Properties[property.Name].Value.ToString();
                         }
                         else
@@ -79,14 +79,14 @@ namespace LearnPrograms
                           DriveInfo1.DriveFormat, DriveInfo1.TotalSize, DriveInfo1.AvailableFreeSpace);
                     }
                     catch
-                    {                      
+                    {
                     }
                 }
                 StringBuilder1.AppendFormat("SystemPageSize:  {0}\n", Environment.SystemPageSize);
                 StringBuilder1.AppendFormat("Version:  {0}", Environment.Version);
             }
-            catch 
-            {               
+            catch
+            {
             }
 
             //Textbox linebreak
@@ -94,10 +94,46 @@ namespace LearnPrograms
             return StringBuilder1.ToString();
         }
 
-        private void RemoteComputerInfo(string strUsername, string strPassword, string strIP, ListBox ListBoxIn, string stringWin32class)
+        public string RemoteComputerInfoGeneral(string strUsername, string strPassword, string strIP)
         {
-            ListBox ListBoxResult = ListBoxIn;
-            ListBoxResult.Items.Clear();
+            //ListBox ListBoxResult = ListBoxIn;
+            StringBuilder StringBuilder1 = new StringBuilder(string.Empty);
+
+            ConnectionOptions options = new ConnectionOptions();
+            options.Username = strUsername;
+            options.Password = strPassword;
+            options.Impersonation = ImpersonationLevel.Impersonate;
+            options.EnablePrivileges = true;
+            try
+            {
+                ManagementScope ManagementScope1 = new ManagementScope(string.Format("\\\\{0}\\root\\cimv2", strIP), options);
+                ManagementScope1.Connect();
+                ObjectGetOptions objectGetOptions = new ObjectGetOptions();
+                ManagementPath managementPath1 = new ManagementPath("Win32_OperatingSystem");
+                ManagementClass ManagementClass1 = new ManagementClass(ManagementScope1, managementPath1, objectGetOptions);
+
+                foreach (ManagementObject ManagementObject1 in ManagementClass1.GetInstances())
+                {
+                    // Display the remote computer information
+                    StringBuilder1.AppendFormat("Computer Name : {0}" + Environment.NewLine, ManagementObject1["csname"]);
+                    StringBuilder1.AppendFormat("Windows Directory : {0}" + Environment.NewLine, ManagementObject1["WindowsDirectory"]);
+                    StringBuilder1.AppendFormat("Operating System: {0}" + Environment.NewLine, ManagementObject1["Caption"]);
+                    StringBuilder1.AppendFormat("Version: {0}" + Environment.NewLine, ManagementObject1["Version"]);
+                    StringBuilder1.AppendFormat("Manufacturer : {0}" + Environment.NewLine, ManagementObject1["Manufacturer"]);
+                    StringBuilder1.AppendFormat("Latest bootup time : {0}" + Environment.NewLine, ManagementObject1["LastBootUpTime"]);
+                }
+            }
+            catch (Exception ex)
+            {
+                StringBuilder1.AppendFormat("Can't Connect to Server: {0}\n{1}" + Environment.NewLine, strIP, ex.Message);
+            }
+
+            return StringBuilder1.ToString();
+        }
+
+        public string RemoteComputerInfo(string strUsername, string strPassword, string strIP, string stringWin32class)
+        {
+            StringBuilder StringBuilder1 = new StringBuilder(string.Empty);
 
             ConnectionOptions options = new ConnectionOptions();
             options.Username = strUsername;
@@ -122,7 +158,7 @@ namespace LearnPrograms
                         try
                         {
                             // Display the remote computer system information in input listbox
-                            ListBoxResult.Items.Add(string.Format(property.Name + ":  " +
+                            StringBuilder1.AppendLine(string.Format(property.Name + ":  " +
                               ManagementObject1.Properties[property.Name].Value.ToString()));
                         }
                         catch
@@ -133,43 +169,10 @@ namespace LearnPrograms
             }
             catch (Exception ex)
             {
-                ListBoxResult.Items.Add(string.Format("Can't Connect to Server: {0}\n{1}", strIP, ex.Message));
+                StringBuilder1.AppendLine(string.Format("Can't Connect to Server: {0}\n{1}", strIP, ex.Message));
             }
-        }
 
-        private void RemoteComputerInfoCustomized(string strUsername, string strPassword, string strIP, ListBox ListBoxIn)
-        {
-            ListBox ListBoxResult = ListBoxIn;
-            ListBoxResult.Items.Clear();
-
-            ConnectionOptions options = new ConnectionOptions();
-            options.Username = strUsername;
-            options.Password = strPassword;
-            options.Impersonation = ImpersonationLevel.Impersonate;
-            options.EnablePrivileges = true;
-            try
-            {
-                ManagementScope ManagementScope1 = new ManagementScope(string.Format("\\\\{0}\\root\\cimv2", strIP), options);
-                ManagementScope1.Connect();
-                ObjectGetOptions objectGetOptions = new ObjectGetOptions();
-                ManagementPath managementPath1 = new ManagementPath("Win32_OperatingSystem");
-                ManagementClass ManagementClass1 = new ManagementClass(ManagementScope1, managementPath1, objectGetOptions);
-
-                foreach (ManagementObject ManagementObject1 in ManagementClass1.GetInstances())
-                {
-                    // Display the remote computer information
-                    ListBoxResult.Items.Add(string.Format("Computer Name : {0}", ManagementObject1["csname"]));
-                    ListBoxResult.Items.Add(string.Format("Windows Directory : {0}", ManagementObject1["WindowsDirectory"]));
-                    ListBoxResult.Items.Add(string.Format("Operating System: {0}", ManagementObject1["Caption"]));
-                    ListBoxResult.Items.Add(string.Format("Version: {0}", ManagementObject1["Version"]));
-                    ListBoxResult.Items.Add(string.Format("Manufacturer : {0}", ManagementObject1["Manufacturer"]));
-                    ListBoxResult.Items.Add(string.Format("Latest bootup time : {0}", ManagementObject1["LastBootUpTime"]));
-                }
-            }
-            catch (Exception ex)
-            {
-                ListBoxResult.Items.Add(string.Format("Can't Connect to Server: {0}\n{1}", strIP, ex.Message));
-            }
+            return StringBuilder1.ToString();
         }
 
     }

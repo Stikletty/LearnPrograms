@@ -43,8 +43,8 @@
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.ClearTextBoxesButton = new System.Windows.Forms.Button();
             this.NetworkCheckButton = new System.Windows.Forms.Button();
+            this.ClearTextBoxesButton = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.NetworkStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1.SuspendLayout();
@@ -193,16 +193,6 @@
             this.panel1.Size = new System.Drawing.Size(720, 54);
             this.panel1.TabIndex = 14;
             // 
-            // ClearTextBoxesButton
-            // 
-            this.ClearTextBoxesButton.Location = new System.Drawing.Point(369, 28);
-            this.ClearTextBoxesButton.Name = "ClearTextBoxesButton";
-            this.ClearTextBoxesButton.Size = new System.Drawing.Size(89, 23);
-            this.ClearTextBoxesButton.TabIndex = 14;
-            this.ClearTextBoxesButton.Text = "Clear";
-            this.ClearTextBoxesButton.UseVisualStyleBackColor = true;
-            this.ClearTextBoxesButton.Click += new System.EventHandler(this.ClearTextBoxesButton_Click);
-            // 
             // NetworkCheckButton
             // 
             this.NetworkCheckButton.Location = new System.Drawing.Point(369, 3);
@@ -212,6 +202,16 @@
             this.NetworkCheckButton.Text = "Netwok Check";
             this.NetworkCheckButton.UseVisualStyleBackColor = true;
             this.NetworkCheckButton.Click += new System.EventHandler(this.NetworkCheckButton_Click);
+            // 
+            // ClearTextBoxesButton
+            // 
+            this.ClearTextBoxesButton.Location = new System.Drawing.Point(369, 28);
+            this.ClearTextBoxesButton.Name = "ClearTextBoxesButton";
+            this.ClearTextBoxesButton.Size = new System.Drawing.Size(89, 23);
+            this.ClearTextBoxesButton.TabIndex = 14;
+            this.ClearTextBoxesButton.Text = "Clear";
+            this.ClearTextBoxesButton.UseVisualStyleBackColor = true;
+            this.ClearTextBoxesButton.Click += new System.EventHandler(this.ClearTextBoxesButton_Click);
             // 
             // statusStrip1
             // 

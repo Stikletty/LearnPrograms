@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -44,7 +43,8 @@ namespace LearnPrograms
         private void SystemInformationForm_Load(object sender, EventArgs e)
         {
             //Win32Class textbox feltöltése XML-ből
-            try {
+            try
+            {
                 XMLHandler handler = new XMLHandler();
                 List<string> stringWin32classes = new List<string>();
 
@@ -52,38 +52,44 @@ namespace LearnPrograms
 
                 Win32ClassesComboBox.Items.Clear();
 
-                foreach (string stringWin32class in stringWin32classes)            
+                foreach (string stringWin32class in stringWin32classes)
                 {
                     //comboBox feltöltése
-                    Win32ClassesComboBox.Items.Add(stringWin32class);                
+                    Win32ClassesComboBox.Items.Add(stringWin32class);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Win32Class XML read error: "+ex.ToString(), "Win32Class XML read error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Win32Class XML read error: " + ex.ToString(), "Win32Class XML read error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             //Hálózati kapcsolat ellenőrzése.
             this.CheckNetwork();
 
+            //FIXME: Debug után törölni!!!!!
+            UserNameTextBox.Text = "trolladm";
+            PasswordTextBox.Text = "Vicus8552%";
+            RemoteIPTextBox.Text = "10.30.20.120";
+
         }
 
         private void SystemInformationButton_Click(object sender, EventArgs e)
         {
+            //TODO 05: felhaszn, jelszó, ip ellenőrzést is beletenni.
             CompInfo compinfo = new CompInfo();
 
             SystemInformationButton.Enabled = false;
             SystemInformationsTextBox.Clear();
-            SystemInformationsTextBox.Text = compinfo.SystemInformation();
+            SystemInformationsTextBox.AppendText(compinfo.RemoteComputerInfoGeneral(UserNameTextBox.Text, PasswordTextBox.Text, RemoteIPTextBox.Text));
             SystemInformationButton.Enabled = true;
         }
 
-        private void getDeviceInformation(string win32ClassName)
+        private void getDeviceInformation(string strUsername, string strPassword, string strIP, string win32ClassName)
         {
             try
             {
                 CompInfo compinfo = new CompInfo();
-                string devinfotmp = compinfo.DeviceInformation(win32ClassName);
+                string devinfotmp = compinfo.RemoteComputerInfo(strUsername, strPassword, strIP, win32ClassName);
 
                 this.Invoke((MethodInvoker)delegate ()
                 {
@@ -108,7 +114,7 @@ namespace LearnPrograms
 
         private void DeviceInformationButton_Click(object sender, EventArgs e)
         {
-
+            //TODO 05: felhaszn, jelszó, ip ellenőrzést is beletenni.
             DeviceInformationButton.Enabled = false;
             Win32ClassesComboBox.Enabled = false;
 
@@ -117,10 +123,13 @@ namespace LearnPrograms
                 DeviceInformationsTextBox.Clear();
                 CompInfo compinfo = new CompInfo();
                 string Win32Class = Win32ClassesComboBox.Text;
-              
+                string username = UserNameTextBox.Text;
+                string password = PasswordTextBox.Text;
+                string ipaddress = RemoteIPTextBox.Text;
+
                 //getDeviceInformation(Win32Class);
                 DeviceInformationThread = new Thread(
-                    new ThreadStart(() => getDeviceInformation(Win32Class))
+                    new ThreadStart(() => getDeviceInformation(username, password, ipaddress, Win32Class))
                 )
                 {
                     Name = "DeviceInformation",
