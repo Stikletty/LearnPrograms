@@ -32,9 +32,10 @@
             this.ExitButton = new System.Windows.Forms.Button();
             this.SystemInfButton = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.ComputerNameStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.UserInfoStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.RemoteSystemInfButton = new System.Windows.Forms.Button();
-            this.ComputerNameStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.ADHandlerButton = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -79,6 +80,13 @@
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
+            // ComputerNameStatusLabel
+            // 
+            this.ComputerNameStatusLabel.BorderStyle = System.Windows.Forms.Border3DStyle.Bump;
+            this.ComputerNameStatusLabel.Name = "ComputerNameStatusLabel";
+            this.ComputerNameStatusLabel.Size = new System.Drawing.Size(92, 17);
+            this.ComputerNameStatusLabel.Text = "computer name";
+            // 
             // UserInfoStatusLabel
             // 
             this.UserInfoStatusLabel.BorderStyle = System.Windows.Forms.Border3DStyle.Bump;
@@ -96,18 +104,22 @@
             this.RemoteSystemInfButton.UseVisualStyleBackColor = true;
             this.RemoteSystemInfButton.Click += new System.EventHandler(this.RemoteSystemInfButton_Click);
             // 
-            // ComputerNameStatusLabel
+            // ADHandlerButton
             // 
-            this.ComputerNameStatusLabel.BorderStyle = System.Windows.Forms.Border3DStyle.Bump;
-            this.ComputerNameStatusLabel.Name = "ComputerNameStatusLabel";
-            this.ComputerNameStatusLabel.Size = new System.Drawing.Size(92, 17);
-            this.ComputerNameStatusLabel.Text = "computer name";
+            this.ADHandlerButton.Location = new System.Drawing.Point(388, 12);
+            this.ADHandlerButton.Name = "ADHandlerButton";
+            this.ADHandlerButton.Size = new System.Drawing.Size(75, 23);
+            this.ADHandlerButton.TabIndex = 5;
+            this.ADHandlerButton.Text = "AD handler";
+            this.ADHandlerButton.UseVisualStyleBackColor = true;
+            this.ADHandlerButton.Click += new System.EventHandler(this.ADHandlerButton_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ADHandlerButton);
             this.Controls.Add(this.RemoteSystemInfButton);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.SystemInfButton);
@@ -134,6 +146,7 @@
         private System.Windows.Forms.ToolStripStatusLabel UserInfoStatusLabel;
         private System.Windows.Forms.Button RemoteSystemInfButton;
         private System.Windows.Forms.ToolStripStatusLabel ComputerNameStatusLabel;
+        private System.Windows.Forms.Button ADHandlerButton;
     }
 }
 

@@ -60,6 +60,11 @@ namespace LearnPrograms
             remoteSystemInformationForm.ShowDialog();
         }
 
-        
+        private void ADHandlerButton_Click(object sender, EventArgs e)
+        {
+            ADHandlerForm aDHandlerForm = new ADHandlerForm();
+
+            aDHandlerForm.ShowDialog();
+        }
     }
 }

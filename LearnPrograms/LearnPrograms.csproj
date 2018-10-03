@@ -50,6 +50,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -62,8 +63,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\ADClass.cs" />
     <Compile Include="Classes\CompInfo.cs" />
     <Compile Include="Classes\XMLHandler.cs" />
+    <Compile Include="Forms\ADHandlerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ADHandlerForm.Designer.cs">
+      <DependentUpon>ADHandlerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +100,9 @@
       <DependentUpon>SystemInformationForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\UserClass.cs" />
+    <EmbeddedResource Include="Forms\ADHandlerForm.resx">
+      <DependentUpon>ADHandlerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
