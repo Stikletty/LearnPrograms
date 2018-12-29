@@ -208,6 +208,9 @@ namespace LearnPrograms
             LocalPublicIPTextBox.Clear();
         }
 
-
+        private void FillSSIDList_Click(object sender, EventArgs e)
+        {
+            SSIDListBox.DataSource = netHandler.GetAvailableWifiSSIDList();           
+        }
     }
 }

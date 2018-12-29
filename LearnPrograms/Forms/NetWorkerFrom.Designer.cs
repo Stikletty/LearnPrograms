@@ -47,6 +47,8 @@
             this.GetPublicIPButton = new System.Windows.Forms.Button();
             this.GetIPPanel = new System.Windows.Forms.Panel();
             this.ClearLocalPublicIPButton = new System.Windows.Forms.Button();
+            this.FillSSIDList = new System.Windows.Forms.Button();
+            this.SSIDListBox = new System.Windows.Forms.ListBox();
             this.statusStrip1.SuspendLayout();
             this.IPToolPanel.SuspendLayout();
             this.GetIPPanel.SuspendLayout();
@@ -240,11 +242,31 @@
             this.ClearLocalPublicIPButton.UseVisualStyleBackColor = true;
             this.ClearLocalPublicIPButton.Click += new System.EventHandler(this.ClearLocalPublicIPButton_Click);
             // 
+            // FillSSIDList
+            // 
+            this.FillSSIDList.Location = new System.Drawing.Point(592, 69);
+            this.FillSSIDList.Name = "FillSSIDList";
+            this.FillSSIDList.Size = new System.Drawing.Size(88, 23);
+            this.FillSSIDList.TabIndex = 12;
+            this.FillSSIDList.Text = "Get SSID List";
+            this.FillSSIDList.UseVisualStyleBackColor = true;
+            this.FillSSIDList.Click += new System.EventHandler(this.FillSSIDList_Click);
+            // 
+            // SSIDListBox
+            // 
+            this.SSIDListBox.FormattingEnabled = true;
+            this.SSIDListBox.Location = new System.Drawing.Point(592, 100);
+            this.SSIDListBox.Name = "SSIDListBox";
+            this.SSIDListBox.Size = new System.Drawing.Size(196, 264);
+            this.SSIDListBox.TabIndex = 13;
+            // 
             // NetWorkerFrom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 435);
+            this.Controls.Add(this.SSIDListBox);
+            this.Controls.Add(this.FillSSIDList);
             this.Controls.Add(this.GetIPPanel);
             this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.IPToolPanel);
@@ -287,5 +309,7 @@
         private System.Windows.Forms.Button GetPublicIPButton;
         private System.Windows.Forms.Panel GetIPPanel;
         private System.Windows.Forms.Button ClearLocalPublicIPButton;
+        private System.Windows.Forms.Button FillSSIDList;
+        private System.Windows.Forms.ListBox SSIDListBox;
     }
 }

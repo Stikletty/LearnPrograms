@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
+using NativeWifi;
 
 namespace LearnPrograms
 {
@@ -206,7 +207,32 @@ namespace LearnPrograms
             return pingable;
         }
 
+        /// <summary>
+        /// Returns reachable Wifi SSID list
+        /// </summary>
+        /// <returns>Returns a List<string> with SSID-s</returns>
+        public List<string> GetAvailableWifiSSIDList()
+        {
+            List<string> SSIDList = new List<string>();
 
+            WlanClient client = new WlanClient();
+            foreach (WlanClient.WlanInterface wlanIface in client.Interfaces)
+            {
+                // Lists all available networks
+                Wlan.WlanAvailableNetwork[] networks = wlanIface.GetAvailableNetworkList(0);
+                foreach (Wlan.WlanAvailableNetwork network in networks)
+                {
+                     SSIDList.Add(GetStringForSSID(network.dot11Ssid));
+                }
+            }
+
+            return SSIDList;
+        }
+
+        private string GetStringForSSID(Wlan.Dot11Ssid ssid)
+        {
+            return Encoding.ASCII.GetString(ssid.SSID, 0, (int)ssid.SSIDLength);
+        }
 
     }
 }
